@@ -11,71 +11,155 @@
             --accent: #ffde59;
             --glass: rgba(255, 255, 255, 0.05);
             --border: rgba(255, 255, 255, 0.1);
+            --text: #ffffff;
         }
+
+        /* Светлая тема */
+        body.light-theme {
+            --bg: #f0f2f5;
+            --accent: #5271ff;
+            --glass: rgba(0, 0, 0, 0.05);
+            --border: rgba(0, 0, 0, 0.1);
+            --text: #1a1a2e;
+            background: radial-gradient(circle at 50% 0%, #ffffff 0%, #d1d8e0 100%);
+        }
+
+        /* Тема "Головоломка" (на основе вашего фото) */
+        body.inside-out-theme {
+            --bg: #2b1d3d;
+            --accent: #ffde59; /* Желтый Радости */
+            --glass: rgba(255, 255, 255, 0.1);
+            --border: rgba(255, 255, 255, 0.2);
+            --text: #ffffff;
+            /* Градиент в цветах кругов с баннера: фиолетовый, синий, бордовый */
+            background: fixed, 
+                        radial-gradient(circle at top left, #4b3d8e 0%, transparent 40%),
+                        radial-gradient(circle at top right, #8e2d45 0%, transparent 40%),
+                        radial-gradient(circle at bottom left, #2d5a8e 0%, transparent 40%),
+                        #1a1225;
+        }
+
         body {
             margin: 0;
-            padding: 40px 20px;
+            padding: 20px;
             font-family: 'Inter', sans-serif;
             background: radial-gradient(circle at 50% 0%, #1a1a2e 0%, #05070a 100%);
-            color: #fff;
+            color: var(--text);
             display: flex;
             justify-content: center;
             min-height: 100vh;
+            transition: all 0.4s ease;
         }
+
         .container { width: 100%; max-width: 440px; }
+
+        /* Переключатель тем */
+        .theme-switcher {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+            margin-bottom: 30px;
+            background: var(--glass);
+            padding: 5px;
+            border-radius: 15px;
+            border: 1px solid var(--border);
+        }
+
+        .theme-switcher button {
+            border: none;
+            padding: 10px;
+            border-radius: 10px;
+            background: transparent;
+            color: var(--text);
+            cursor: pointer;
+            font-size: 12px;
+            font-weight: 700;
+            transition: 0.3s;
+        }
+
+        .theme-switcher button.active {
+            background: var(--accent);
+            color: #000;
+        }
+
         h1 {
             font-weight: 900;
             font-size: 32px;
             text-align: center;
-            margin-bottom: 40px;
-            background: linear-gradient(180deg, #fff 0%, #666 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+            margin-bottom: 30px;
             letter-spacing: -1px;
         }
+
         ul { list-style: none; padding: 0; }
-        li { margin-bottom: 16px; }
-        a {
+        li { margin-bottom: 12px; }
+
+        a.nav-btn {
             display: block;
             padding: 20px;
             background: var(--glass);
             border: 1px solid var(--border);
             border-radius: 20px;
-            color: #fff;
+            color: var(--text);
             text-decoration: none;
             font-weight: 700;
             backdrop-filter: blur(10px);
             transition: all 0.3s ease;
             text-align: center;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
         }
-        a:hover {
+
+        a.nav-btn:hover {
             transform: translateY(-3px);
-            background: rgba(255, 255, 255, 0.1);
             border-color: var(--accent);
-            box-shadow: 0 0 20px rgba(255, 222, 89, 0.2);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
         }
-        .note {
-            text-align: center;
-            margin-top: 40px;
-            font-size: 12px;
-            color: #555;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-        }
+
+        .note { text-align: center; margin-top: 30px; font-size: 11px; opacity: 0.5; letter-spacing: 2px; }
     </style>
 </head>
-<body>
+<body class="dark-theme">
+
     <div class="container">
-        <h1>ХАБ ССЫЛОК</h1>
+        <h1>MOLODCO HUB</h1>
+
+        <div class="theme-switcher">
+            <button onclick="setTheme('dark')" id="btn-dark" class="active">DARK</button>
+            <button onclick="setTheme('light')" id="btn-light">LIGHT</button>
+            <button onclick="setTheme('inside')" id="btn-inside">Головоломка</button>
+        </div>
+
         <ul>
-            <li><a href="schedule-light.html">📅 Расписание (Light)</a></li>
-            <li><a href="schedule-dark.html">🌙 Расписание (Dark)</a></li>
-            <li><a href="bible-lesson.html">📖 Урок дня</a></li>
-            <li><a href="organizers.html">👥 Организаторы</a></li>
-            <li><a href="rules.html">📜 Правила</a></li>
+            <li><a href="schedule-dark.html" id="schedule-link" class="nav-btn">📅 РАСПИСАНИЕ</a></li>
+            <li><a href="bible-lesson.html" class="nav-btn">📖 УРОК ДНЯ</a></li>
+            <li><a href="organizers.html" class="nav-btn">👥 ОРГАНИЗАТОРЫ</a></li>
+            <li><a href="rules.html" class="nav-btn">📜 ПРАВИЛА</a></li>
         </ul>
-        <p class="note">MolodcoBot &copy; 2026</p>
+
+        <p class="note">YOUTH CENTRAL • 2026</p>
     </div>
+
+    <script>
+        function setTheme(theme) {
+            const body = document.body;
+            const link = document.getElementById('schedule-link');
+            const btns = document.querySelectorAll('.theme-switcher button');
+            
+            // Сброс активных кнопок
+            btns.forEach(b => b.classList.remove('active'));
+            body.classList.remove('light-theme', 'inside-out-theme');
+
+            if (theme === 'dark') {
+                document.getElementById('btn-dark').classList.add('active');
+                link.href = 'schedule-dark.html';
+            } else if (theme === 'light') {
+                body.classList.add('light-theme');
+                document.getElementById('btn-light').classList.add('active');
+                link.href = 'schedule-light.html';
+            } else if (theme === 'inside') {
+                body.classList.add('inside-out-theme');
+                document.getElementById('btn-inside').classList.add('active');
+                link.href = 'schedule-light.html'; // В разноцветной открываем светлое
+            }
+        }
+    </script>
 </body>
 </html>
