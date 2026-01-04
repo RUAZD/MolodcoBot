@@ -9,6 +9,198 @@
         :root {
             --bg: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
             --accent: #ffde59;
+            --glass: rgba(255, 255, 255, 0.05);
+            --border: rgba(255, 255, 255, 0.1);
+            --text: #ffffff;
+            --btn-text: #ffffff;
+        }
+
+        /* Светлая тема (Мягкая, текст темный) */
+        body.light-theme {
+            --bg: linear-gradient(135deg, #e0c3fc 0%, #8ec5fc 100%);
+            --accent: #5271ff;
+            --glass: rgba(255, 255, 255, 0.3);
+            --border: rgba(0, 0, 0, 0.05);
+            --text: #1a1a2e; /* Темный текст для светлого фона */
+            --btn-text: #1a1a2e;
+        }
+
+        /* Те color: "Головоломка" (Яркая, сочная, неоновая) */
+        body.inside-out-theme {
+            --bg: fixed, 
+                  radial-gradient(circle at 15% 15%, #ffde59 0%, transparent 35%), /* Радость */
+                  radial-gradient(circle at 85% 15%, #ff4d4d 0%, transparent 35%), /* Гнев */
+                  radial-gradient(circle at 50% 50%, #7ed957 0%, transparent 40%), /* Брезгливость */
+                  radial-gradient(circle at 15% 85%, #5271ff 0%, transparent 35%), /* Печаль */
+                  radial-gradient(circle at 85% 85%, #a29bfe 0%, transparent 35%), /* Страх */
+                  linear-gradient(135deg, #1e0b36 0%, #0a0a1a 100%);
+            --accent: #00f2fe;
+            --glass: rgba(255, 255, 255, 0.15);
+            --border: rgba(255, 255, 255, 0.3);
+            --text: #ffffff;
+            --btn-text: #ffffff;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.5);
+        }
+
+        body {
+            margin: 0;
+            padding: 20px;
+            font-family: 'Inter', sans-serif;
+            background: var(--bg);
+            background-attachment: fixed;
+            color: var(--text);
+            display: flex;
+            justify-content: center;
+            min-height: 100vh;
+            transition: all 0.5s ease;
+        }
+
+        .container { width: 100%; max-width: 440px; }
+
+        h1 {
+            font-weight: 900;
+            font-size: 38px;
+            text-align: center;
+            margin-bottom: 30px;
+            letter-spacing: -1.5px;
+            text-transform: uppercase;
+        }
+
+        /* Переключатель тем */
+        .theme-switcher {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 8px;
+            margin-bottom: 35px;
+            background: var(--glass);
+            padding: 6px;
+            border-radius: 20px;
+            border: 1px solid var(--border);
+            backdrop-filter: blur(10px);
+        }
+
+        .theme-switcher button {
+            border: none;
+            padding: 12px 5px;
+            border-radius: 14px;
+            background: transparent;
+            color: var(--btn-text);
+            cursor: pointer;
+            font-size: 11px;
+            font-weight: 800;
+            text-transform: uppercase;
+            transition: 0.3s;
+        }
+
+        .theme-switcher button.active {
+            background: var(--text);
+            color: var(--bg-inverted, #fff); /* Скрипт поменяет это */
+        }
+        
+        /* Исправление цвета текста на кнопке в светлой теме */
+        body.light-theme .theme-switcher button.active {
+            background: #1a1a2e;
+            color: #fff;
+        }
+        body.dark-theme .theme-switcher button.active,
+        body.inside-out-theme .theme-switcher button.active {
+            background: #fff;
+            color: #1a1a2e;
+        }
+
+        ul { list-style: none; padding: 0; }
+        li { margin-bottom: 15px; }
+
+        a.nav-btn {
+            display: block;
+            padding: 22px;
+            background: var(--glass);
+            border: 1px solid var(--border);
+            border-radius: 25px;
+            color: var(--text);
+            text-decoration: none;
+            font-weight: 800;
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        a.nav-btn:hover {
+            transform: translateY(-5px) scale(1.02);
+            border-color: var(--accent);
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        .note { 
+            text-align: center; 
+            margin-top: 40px; 
+            font-size: 10px; 
+            opacity: 0.6; 
+            letter-spacing: 4px; 
+            font-weight: 900;
+            text-transform: uppercase;
+        }
+    </style>
+</head>
+<body class="dark-theme">
+
+    <div class="container">
+        <h1>ХАБ</h1>
+
+        <div class="theme-switcher">
+            <button onclick="setTheme('dark')" id="btn-dark" class="active">Dark</button>
+            <button onclick="setTheme('light')" id="btn-light">Light</button>
+            <button onclick="setTheme('inside')" id="btn-inside">Inside Out</button>
+        </div>
+
+        <ul>
+            <li><a href="schedule-dark.html" id="schedule-link" class="nav-btn">📅 РАСПИСАНИЕ</a></li>
+            <li><a href="bible-lesson.html" class="nav-btn">📖 УРОК ДНЯ</a></li>
+            <li><a href="organizers.html" class="nav-btn">👥 ОРГАНИЗАТОРЫ</a></li>
+            <li><a href="rules.html" class="nav-btn">📜 ПРАВИЛА</a></li>
+        </ul>
+
+        <p class="note">MOLODCO • CENTRAL YOUTH</p>
+    </div>
+
+    <script>
+        function setTheme(theme) {
+            const body = document.body;
+            const link = document.getElementById('schedule-link');
+            const btns = document.querySelectorAll('.theme-switcher button');
+            
+            btns.forEach(b => b.classList.remove('active'));
+            body.classList.remove('light-theme', 'inside-out-theme', 'dark-theme');
+
+            if (theme === 'dark') {
+                body.classList.add('dark-theme');
+                document.getElementById('btn-dark').classList.add('active');
+                link.href = 'schedule-dark.html';
+            } else if (theme === 'light') {
+                body.classList.add('light-theme');
+                document.getElementById('btn-light').classList.add('active');
+                link.href = 'schedule-light.html';
+            } else if (theme === 'inside') {
+                body.classList.add('inside-out-theme');
+                document.getElementById('btn-inside').classList.add('active');
+                link.href = 'schedule-light.html';
+            }
+        }
+    </script>
+</body>
+</html><!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Hub — Molodco</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
+            --accent: #ffde59;
             --glass: rgba(255, 255, 255, 0.1);
             --border: rgba(255, 255, 255, 0.2);
             --text: #ffffff;
