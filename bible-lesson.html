@@ -3,37 +3,105 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Урок дня</title>
+    <title>Урок дня — Molodco</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
     <style>
-        body {
-            margin: 0; padding: 30px 20px;
-            font-family: 'Inter', sans-serif;
-            background: #05070a; color: #fff;
-            display: flex; flex-direction: column; align-items: center;
+        /* Общие стили тем */
+        :root { 
+            --bg: linear-gradient(135deg, #0f0c29, #302b63, #24243e); 
+            --text: #fff; 
+            --glass: rgba(255,255,255,0.05); 
+            --border: rgba(255,255,255,0.1); 
+            --btn-text: #fff; 
         }
-        .back { align-self: flex-start; margin-bottom: 20px; }
-        .back a { color: #888; text-decoration: none; font-size: 14px; }
+        body.light-theme { 
+            --bg: linear-gradient(135deg, #e0c3fc, #8ec5fc); 
+            --text: #1a1a2e; 
+            --glass: rgba(255,255,255,0.3); 
+            --border: rgba(0,0,0,0.1); 
+            --btn-text: #1a1a2e; 
+        }
+        body.inside-out-theme { 
+            --bg: fixed, radial-gradient(circle at 15% 15%, #ffde59 0%, transparent 35%), 
+                  radial-gradient(circle at 85% 15%, #ff4d4d 0%, transparent 35%), 
+                  radial-gradient(circle at 50% 50%, #7ed957 0%, transparent 40%), 
+                  radial-gradient(circle at 15% 85%, #5271ff 0%, transparent 35%), 
+                  radial-gradient(circle at 85% 85%, #a29bfe 0%, transparent 35%), 
+                  linear-gradient(135deg, #1e0b36, #0a0a1a); 
+            --text: #fff; --glass: rgba(255,255,255,0.15); --border: rgba(255,255,255,0.3); --btn-text: #fff; 
+        }
+        body { 
+            margin: 0; padding: 80px 20px 40px; font-family: 'Inter', sans-serif; 
+            background: var(--bg); background-attachment: fixed; color: var(--text); 
+            display: flex; flex-direction: column; align-items: center; min-height: 100vh; transition: 0.4s; 
+        }
         .container { max-width: 600px; width: 100%; }
-        h1 { font-weight: 900; background: linear-gradient(90deg, #ffde59, #ff914d); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-        .card {
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            padding: 30px; border-radius: 24px;
-            line-height: 1.8; backdrop-filter: blur(15px);
-            box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+        .back-link { color: var(--text); text-decoration: none; font-weight: 800; font-size: 14px; margin-bottom: 20px; display: inline-block; opacity: 0.7; }
+        
+        h1 { font-weight: 900; text-transform: uppercase; margin-bottom: 25px; font-size: 28px; letter-spacing: -1px; text-align: center; }
+        
+        .card { 
+            background: var(--glass); border: 1px solid var(--border); padding: 30px; border-radius: 28px; 
+            backdrop-filter: blur(15px); line-height: 1.8; font-size: 16px; box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            text-align: center;
         }
-        .ref { color: #ffde59; font-weight: 700; margin-bottom: 10px; display: block; font-size: 12px; text-transform: uppercase; }
+        .verse { 
+            font-size: 1.2em; font-weight: 700; margin-bottom: 15px; 
+            font-style: italic; opacity: 0.9;
+        }
+        .reference { 
+            font-size: 0.8em; opacity: 0.7; font-weight: 600; 
+            margin-top: 15px; display: block;
+        }
+        
+        /* Переключатель тем в углу */
+        .theme-switcher-wrapper { position: fixed; top: 15px; right: 15px; text-align: right; z-index: 1000; }
+        .theme-label { font-size: 9px; font-weight: 900; text-transform: uppercase; margin-right: 5px; opacity: 0.7; letter-spacing: 1px; color: var(--btn-text); }
+        .theme-switcher { display: inline-flex; gap: 4px; background: var(--glass); padding: 4px; border-radius: 12px; border: 1px solid var(--border); backdrop-filter: blur(10px); }
+        .theme-switcher button { border: none; padding: 8px 12px; border-radius: 8px; background: transparent; color: var(--btn-text); font-size: 10px; font-weight: 800; cursor: pointer; }
+        .theme-switcher button.active { background: var(--text); color: #000; }
+        body.light-theme .theme-switcher button.active { background: #1a1a2e; color: #fff; }
+
+        @media (max-width: 380px) { h1 { font-size: 24px; } .card { padding: 20px; font-size: 14px; } }
     </style>
 </head>
 <body>
-    <div class="container">
-        <div class="back"><a href="index.html">← НАЗАД</a></div>
-        <h1>Урок дня</h1>
-        <div class="card">
-            <span class="ref">МЫСЛЬ НА СЕГОДНЯ:</span>
-            <p>Здесь будет ваш текст. Используйте этот блок для вдохновения. Вы можете обновлять его через GitHub, и дизайн автоматически подстроится под объем текста.</p>
+    <div class="theme-switcher-wrapper">
+        <span class="theme-label">Тема</span>
+        <div class="theme-switcher">
+            <button onclick="applyTheme('dark')" id="btn-dark">D</button>
+            <button onclick="applyTheme('light')" id="btn-light">L</button>
+            <button onclick="applyTheme('inside')" id="btn-inside">Г</button>
         </div>
     </div>
+
+    <div class="container">
+        <a href="index.html" class="back-link">← НАЗАД</a>
+        <h1>Урок дня</h1>
+        <div class="card">
+            <p class="verse">
+                «Не беспокойтесь ни о чем, но во всем в молитве и прошении с благодарением открывайте свои желания Богу, 
+                и мир Божий, который превыше всякого ума, соблюдет сердца ваши и помышления ваши во Христе Иисусе.»
+            </p>
+            <span class="reference">Филиппийцам 4:6-7 (Синодальный перевод)</span>
+            <p style="margin-top: 25px; font-size: 0.9em; opacity: 0.8;">
+                Этот стих напоминает нам, что даже когда эмоции переполняют, мы можем найти покой и мудрость в Боге. 
+                Пусть этот день будет наполнен миром и радостью, несмотря ни на что!
+            </p>
+        </div>
+    </div>
+
+    <script>
+        function applyTheme(theme) {
+            document.body.classList.remove('light-theme', 'inside-out-theme', 'dark-theme');
+            document.querySelectorAll('.theme-switcher button').forEach(b => b.classList.remove('active'));
+            if (theme === 'light') document.body.classList.add('light-theme');
+            if (theme === 'inside') document.body.classList.add('inside-out-theme');
+            const btn = document.getElementById('btn-' + (theme === 'inside' ? 'inside' : theme));
+            if (btn) btn.classList.add('active');
+            localStorage.setItem('selectedTheme', theme);
+        }
+        applyTheme(localStorage.getItem('selectedTheme') || 'dark');
+    </script>
 </body>
 </html>
