@@ -2,76 +2,36 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <title>Список организаторов</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Организаторы</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
     <style>
-        :root {
-            color-scheme: dark;
-        }
-        body {
-            margin: 0;
-            padding: 32px;
-            font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-            background: #0d1117;
-            color: #c9d1d9;
-            max-width: 800px;
-        }
-        a {
-            color: #58a6ff;
-            text-decoration: none;
-        }
-        a:hover {
-            text-decoration: underline;
-        }
-        h1 {
-            font-size: 22px;
-            margin-bottom: 16px;
-        }
-        .back {
-            margin-bottom: 16px;
-            font-size: 13px;
-        }
-        ul {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-        }
-        li + li {
-            margin-top: 8px;
-        }
-        .role {
-            color: #8b949e;
-            font-size: 13px;
-        }
-        .card {
-            background: #161b22;
-            border-radius: 8px;
-            border: 1px solid #30363d;
-            padding: 20px;
-        }
+        body { margin: 0; padding: 30px 20px; font-family: 'Inter', sans-serif; background: #05070a; color: #fff; display: flex; flex-direction: column; align-items: center; }
+        .container { max-width: 440px; width: 100%; }
+        .back a { color: #888; text-decoration: none; font-size: 14px; display: block; margin-bottom: 20px; }
+        h1 { font-weight: 900; margin-bottom: 30px; }
+        .card { background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 24px; overflow: hidden; }
+        ul { list-style: none; padding: 0; margin: 0; }
+        li { padding: 20px; border-bottom: 1px solid rgba(255,255,255,0.05); display: flex; flex-direction: column; }
+        li:last-child { border-bottom: none; }
+        .name { font-weight: 700; font-size: 18px; }
+        .role { font-size: 12px; text-transform: uppercase; letter-spacing: 1px; margin-top: 4px; }
+        .tech { color: #5271ff; } /* Синий */
+        .coord { color: #ffde59; } /* Желтый */
+        .logis { color: #7ed957; } /* Зеленый */
     </style>
 </head>
 <body>
-    <div class="back">
-        <a href="index.html">← Назад к хабу</a>
-    </div>
-
-    <h1>Список организаторов</h1>
-
-    <div class="card">
-        <ul>
-            <li>
-                Алексей — <span class="role">техническая поддержка</span>
-            </li>
-            <li>
-                Иван Иванов — <span class="role">координатор</span>
-            </li>
-            <li>
-                Мария Петрова — <span class="role">логистика</span>
-            </li>
-            <li>
-                …другие организаторы
-            </li>
-        </ul>
+    <div class="container">
+        <div class="back"><a href="index.html">← НАЗАД</a></div>
+        <h1>Команда</h1>
+        <div class="card">
+            <ul>
+                <li><span class="name">Алексей</span><span class="role tech">Техническая поддержка</span></li>
+                <li><span class="name">Иван Иванов</span><span class="role coord">Координатор проекта</span></li>
+                <li><span class="name">Мария Петрова</span><span class="role logis">Логистика</span></li>
+            </ul>
+        </div>
     </div>
 </body>
 </html>
