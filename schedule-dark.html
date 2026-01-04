@@ -3,61 +3,26 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Расписание дня — тёмная тема</title>
+    <title>Schedule Dark</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
     <style>
-        :root { color-scheme: dark; }
-        body {
-            margin: 0;
-            padding: 16px;
-            font-family: system-ui, sans-serif;
-            background: #0d1117;
-            color: #c9d1d9;
-        }
-        header {
-            display: flex;
-            align-items: center;
-            margin-bottom: 20px;
-        }
-        .back-btn {
-            text-decoration: none;
-            color: #c9d1d9;
-            background: #161b22;
-            border: 1px solid #30363d;
-            padding: 6px 12px;
-            border-radius: 6px;
-            font-size: 14px;
-        }
-        h1 {
-            font-size: 20px;
-            margin-left: 12px;
-        }
-        .images {
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
-        }
-        img {
-            width: 100%;
-            height: auto;
-            border-radius: 8px;
-            border: 1px solid #30363d;
-        }
+        body { margin: 0; padding: 20px; font-family: 'Inter', sans-serif; background: #05070a; color: #fff; }
+        header { display: flex; align-items: center; gap: 15px; margin-bottom: 30px; }
+        .back-btn { text-decoration: none; color: #fff; background: rgba(255,255,255,0.1); padding: 8px 16px; border-radius: 12px; font-size: 14px; }
+        h1 { font-size: 20px; font-weight: 900; margin: 0; }
+        .images { display: flex; flex-direction: column; gap: 20px; max-width: 600px; margin: 0 auto; }
+        img { width: 100%; border-radius: 20px; border: 1px solid rgba(255,255,255,0.1); box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
     </style>
 </head>
 <body>
-
-<header>
-    <a class="back-btn" href="index.html">← Назад</a>
-    <h1>Расписание дня (тёмная тема)</h1>
-</header>
-
-<div class="images">
-    <img src="images/Day_4_Dark_v1.jpg" alt="Day 4">
-    <img src="images/Day_5_Dark_v1.jpg" alt="Day 5">
-    <img src="images/Day_6_Dark_v1.jpg" alt="Day 6">
-    <img src="images/Day_7_Dark_v1.jpg" alt="Day 7">
-    <img src="images/Day_8_Dark_v1.jpg" alt="Day 8">
-</div>
-
+    <header>
+        <a class="back-btn" href="index.html">←</a>
+        <h1>РАСПИСАНИЕ (DARK)</h1>
+    </header>
+    <div class="images">
+        <img src="images/Day_4_Dark_v1.jpg" alt="Day 4">
+        <img src="images/Day_5_Dark_v1.jpg" alt="Day 5">
+        <img src="images/Day_6_Dark_v1.jpg" alt="Day 6">
+    </div>
 </body>
 </html>
