@@ -42,27 +42,29 @@
         ul { list-style: none; padding: 0; margin: 0; }
         li { padding: 16px 20px; border-bottom: 1px solid var(--border); transition: background 0.2s; }
         li:last-child { border-bottom: none; }
-        li:hover { background: rgba(255,255,255,0.03); }
         
         .name { font-weight: 800; font-size: 16px; display: block; line-height: 1.2; }
         .role { font-size: 10px; text-transform: uppercase; letter-spacing: 1px; font-weight: 700; opacity: 0.6; margin-top: 4px; display: block; }
         
-        .theme-switcher { position: fixed; top: 15px; right: 15px; display: flex; gap: 4px; background: var(--glass); padding: 4px; border-radius: 12px; border: 1px solid var(--border); backdrop-filter: blur(10px); z-index: 1000; }
+        /* Переключатель тем в углу */
+        .theme-switcher-wrapper { position: fixed; top: 15px; right: 15px; text-align: right; z-index: 1000; }
+        .theme-label { font-size: 9px; font-weight: 900; text-transform: uppercase; margin-right: 5px; opacity: 0.7; letter-spacing: 1px; color: var(--btn-text); }
+        .theme-switcher { display: inline-flex; gap: 4px; background: var(--glass); padding: 4px; border-radius: 12px; border: 1px solid var(--border); backdrop-filter: blur(10px); }
         .theme-switcher button { border: none; padding: 8px 12px; border-radius: 8px; background: transparent; color: var(--btn-text); font-size: 10px; font-weight: 800; cursor: pointer; }
         .theme-switcher button.active { background: var(--text); color: #000; }
         body.light-theme .theme-switcher button.active { background: #1a1a2e; color: #fff; }
 
-        @media (max-width: 380px) {
-            h1 { font-size: 24px; }
-            .name { font-size: 15px; }
-        }
+        @media (max-width: 380px) { h1 { font-size: 24px; } .name { font-size: 15px; } }
     </style>
 </head>
 <body>
-    <div class="theme-switcher">
-        <button onclick="applyTheme('dark')" id="btn-dark">D</button>
-        <button onclick="applyTheme('light')" id="btn-light">L</button>
-        <button onclick="applyTheme('inside')" id="btn-inside">IO</button>
+    <div class="theme-switcher-wrapper">
+        <span class="theme-label">Тема</span>
+        <div class="theme-switcher">
+            <button onclick="applyTheme('dark')" id="btn-dark">D</button>
+            <button onclick="applyTheme('light')" id="btn-light">L</button>
+            <button onclick="applyTheme('inside')" id="btn-inside">Г</button>
+        </div>
     </div>
 
     <div class="container">
@@ -99,7 +101,7 @@
             document.querySelectorAll('.theme-switcher button').forEach(b => b.classList.remove('active'));
             if (theme === 'light') document.body.classList.add('light-theme');
             if (theme === 'inside') document.body.classList.add('inside-out-theme');
-            const btn = document.getElementById('btn-' + theme);
+            const btn = document.getElementById('btn-' + (theme === 'inside' ? 'inside' : theme));
             if (btn) btn.classList.add('active');
             localStorage.setItem('selectedTheme', theme);
         }
