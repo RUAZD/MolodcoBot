@@ -8,7 +8,7 @@
     <style>
         :root {
             --bg: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
-            --accent: #58a6ff; /* Синий акцент для темной темы */
+            --accent: #58a6ff;
             --glass: rgba(255, 255, 255, 0.05);
             --border: rgba(255, 255, 255, 0.1);
             --text: #ffffff;
@@ -102,13 +102,15 @@
             <a href="https://t.me/+NNrvf03EvVpiNDBi" class="tg-card">
                 <div class="tg-icon">💬</div>
                 <div class="tg-info">
-                    <strong>Ссылка на беседу</strong>
+                    <span>Ссылка на беседу</span>
+                    <strong>ЧАТ ТЕЛЕГРАМ</strong>
                 </div>
             </a>
             <a href="https://t.me/MolodcoBot" class="tg-card">
                 <div class="tg-icon">🤖</div>
                 <div class="tg-info">
-                    <strong>Ссылка на бота</strong>
+                    <span>Ссылка на бота</span>
+                    <strong>БОТ ТЕЛЕГРАМ</strong>
                 </div>
             </a>
         </div>
@@ -138,7 +140,10 @@
             document.getElementById('btn-' + theme).classList.add('active');
             localStorage.setItem('selectedTheme', theme);
         }
-        updateTheme(localStorage.getItem('selectedTheme') || 'dark');
+
+        // Запуск функции СРАЗУ при загрузке страницы, чтобы ссылка заработала мгновенно
+        const savedTheme = localStorage.getItem('selectedTheme') || 'dark';
+        updateTheme(savedTheme);
     </script>
 </body>
 </html>
