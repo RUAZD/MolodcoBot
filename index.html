@@ -3,12 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Hub — Molodco</title>
+    <title>Головоломка — Molodco</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
     <style>
         :root {
             --bg: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
-            --accent: #58a6ff; /* Изменено с золотого на синий акцент для темной темы */
+            --accent: #58a6ff; /* Синий акцент для темной темы */
             --glass: rgba(255, 255, 255, 0.05);
             --border: rgba(255, 255, 255, 0.1);
             --text: #ffffff;
@@ -29,7 +29,7 @@
                   radial-gradient(circle at 15% 85%, #5271ff 0%, transparent 35%),
                   radial-gradient(circle at 85% 85%, #a29bfe 0%, transparent 35%),
                   linear-gradient(135deg, #1e0b36 0%, #0a0a1a 100%);
-            --accent: #00f2fe; /* Неоновый для Головоломки */
+            --accent: #00f2fe; 
             --glass: rgba(255, 255, 255, 0.15);
             --border: rgba(255, 255, 255, 0.3); --text: #ffffff; --btn-text: #ffffff;
         }
@@ -40,9 +40,8 @@
         }
         .container { width: 100%; max-width: 440px; }
         
-        /* Переключатель тем */
         .theme-switcher-wrapper { position: fixed; top: 15px; right: 15px; text-align: right; z-index: 1000; }
-        .theme-label { font-size: 9px; font-weight: 900; text-transform: uppercase; margin-right: 5px; opacity: 0.7; letter-spacing: 1px; }
+        .theme-label { font-size: 9px; font-weight: 900; text-transform: uppercase; margin-right: 5px; opacity: 0.7; letter-spacing: 1px; color: var(--btn-text); }
         .theme-switcher {
             display: inline-flex; gap: 4px; background: var(--glass); padding: 4px; 
             border-radius: 12px; border: 1px solid var(--border); backdrop-filter: blur(10px);
@@ -54,7 +53,7 @@
         .theme-switcher button.active { background: var(--text); color: #000; }
         body.light-theme .theme-switcher button.active { background: #1a1a2e; color: #fff; }
 
-        h1 { font-weight: 900; font-size: 38px; text-align: center; margin-bottom: 30px; text-transform: uppercase; letter-spacing: -1.5px; }
+        h1 { font-weight: 900; font-size: 32px; text-align: center; margin-bottom: 30px; text-transform: uppercase; letter-spacing: -1px; }
         
         ul { list-style: none; padding: 0; margin-bottom: 30px; }
         li { margin-bottom: 12px; }
@@ -63,25 +62,18 @@
             border-radius: 20px; color: var(--text); text-decoration: none; font-weight: 800;
             backdrop-filter: blur(15px); text-align: center; transition: 0.3s; font-size: 15px;
         }
-        
-        /* Измененная обводка при наведении */
-        a.nav-btn:hover { 
-            transform: translateY(-3px); 
-            border-color: var(--accent); 
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-        }
+        a.nav-btn:hover { transform: translateY(-3px); border-color: var(--accent); }
 
-        /* Ссылки на ТГ */
         .tg-section { display: flex; flex-direction: column; gap: 10px; }
         .tg-card {
             display: flex; align-items: center; gap: 15px; padding: 15px;
-            background: rgba(0, 136, 204, 0.1); border: 1px solid rgba(0, 136, 204, 0.3);
+            background: rgba(0, 136, 204, 0.08); border: 1px solid rgba(0, 136, 204, 0.2);
             border-radius: 18px; color: var(--text); text-decoration: none; transition: 0.3s;
         }
-        .tg-card:hover { background: rgba(0, 136, 204, 0.2); transform: scale(1.02); border-color: #58a6ff; }
+        .tg-card:hover { background: rgba(0, 136, 204, 0.15); transform: scale(1.02); border-color: var(--accent); }
         .tg-icon { font-size: 24px; }
-        .tg-info span { display: block; font-size: 10px; opacity: 0.6; text-transform: uppercase; font-weight: 700; }
-        .tg-info strong { font-size: 14px; font-weight: 800; }
+        .tg-info span { display: block; font-size: 10px; opacity: 0.6; text-transform: uppercase; font-weight: 700; margin-bottom: 2px; }
+        .tg-info strong { font-size: 16px; font-weight: 900; text-transform: uppercase; letter-spacing: 0.5px; }
 
         .note { text-align: center; margin-top: 40px; font-size: 10px; opacity: 0.6; letter-spacing: 4px; font-weight: 900; text-transform: uppercase; }
     </style>
@@ -97,7 +89,7 @@
     </div>
 
     <div class="container">
-        <h1>ХАБ</h1>
+        <h1>ГОЛОВОЛОМКА</h1>
         <ul>
             <li><a href="#" id="schedule-link" class="nav-btn">📅 РАСПИСАНИЕ</a></li>
             <li><a href="bible-lesson.html" class="nav-btn">📖 УРОК ДНЯ</a></li>
@@ -110,15 +102,13 @@
             <a href="https://t.me/+NNrvf03EvVpiNDBi" class="tg-card">
                 <div class="tg-icon">💬</div>
                 <div class="tg-info">
-                    <span>Ссылка на беседу</span>
-                    <strong>MOLODCO CHAT</strong>
+                    <strong>Ссылка на беседу</strong>
                 </div>
             </a>
             <a href="https://t.me/MolodcoBot" class="tg-card">
                 <div class="tg-icon">🤖</div>
                 <div class="tg-info">
-                    <span>Ссылка на бота</span>
-                    <strong>MOLODCO BOT</strong>
+                    <strong>Ссылка на бота</strong>
                 </div>
             </a>
         </div>
