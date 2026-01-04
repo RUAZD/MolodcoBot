@@ -3,35 +3,107 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Организаторы</title>
+    <title>Организаторы — Molodco</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
     <style>
-        body { margin: 0; padding: 30px 20px; font-family: 'Inter', sans-serif; background: #05070a; color: #fff; display: flex; flex-direction: column; align-items: center; }
+        :root { 
+            --bg: linear-gradient(135deg, #0f0c29, #302b63, #24243e); 
+            --text: #fff; 
+            --glass: rgba(255,255,255,0.05); 
+            --border: rgba(255,255,255,0.1); 
+            --btn-text: #fff; 
+        }
+        body.light-theme { 
+            --bg: linear-gradient(135deg, #e0c3fc, #8ec5fc); 
+            --text: #1a1a2e; 
+            --glass: rgba(255,255,255,0.3); 
+            --border: rgba(0,0,0,0.1); 
+            --btn-text: #1a1a2e; 
+        }
+        body.inside-out-theme { 
+            --bg: fixed, radial-gradient(circle at 15% 15%, #ffde59 0%, transparent 35%), 
+                  radial-gradient(circle at 85% 15%, #ff4d4d 0%, transparent 35%), 
+                  radial-gradient(circle at 50% 50%, #7ed957 0%, transparent 40%), 
+                  radial-gradient(circle at 15% 85%, #5271ff 0%, transparent 35%), 
+                  radial-gradient(circle at 85% 85%, #a29bfe 0%, transparent 35%), 
+                  linear-gradient(135deg, #1e0b36, #0a0a1a); 
+            --text: #fff; --glass: rgba(255,255,255,0.15); --border: rgba(255,255,255,0.3); --btn-text: #fff; 
+        }
+        body { 
+            margin: 0; padding: 80px 20px 40px; font-family: 'Inter', sans-serif; 
+            background: var(--bg); background-attachment: fixed; color: var(--text); 
+            display: flex; flex-direction: column; align-items: center; min-height: 100vh; transition: 0.4s; 
+        }
         .container { max-width: 440px; width: 100%; }
-        .back a { color: #888; text-decoration: none; font-size: 14px; display: block; margin-bottom: 20px; }
-        h1 { font-weight: 900; margin-bottom: 30px; }
-        .card { background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 24px; overflow: hidden; }
+        .back-link { color: var(--text); text-decoration: none; font-weight: 800; font-size: 14px; margin-bottom: 20px; display: inline-block; opacity: 0.7; }
+        h1 { font-weight: 900; text-transform: uppercase; margin-bottom: 25px; font-size: 28px; letter-spacing: -1px; text-align: center; }
+        
+        .card { background: var(--glass); border: 1px solid var(--border); border-radius: 24px; overflow: hidden; backdrop-filter: blur(15px); box-shadow: 0 10px 30px rgba(0,0,0,0.2); }
         ul { list-style: none; padding: 0; margin: 0; }
-        li { padding: 20px; border-bottom: 1px solid rgba(255,255,255,0.05); display: flex; flex-direction: column; }
+        li { padding: 16px 20px; border-bottom: 1px solid var(--border); transition: background 0.2s; }
         li:last-child { border-bottom: none; }
-        .name { font-weight: 700; font-size: 18px; }
-        .role { font-size: 12px; text-transform: uppercase; letter-spacing: 1px; margin-top: 4px; }
-        .tech { color: #5271ff; } /* Синий */
-        .coord { color: #ffde59; } /* Желтый */
-        .logis { color: #7ed957; } /* Зеленый */
+        li:hover { background: rgba(255,255,255,0.03); }
+        
+        .name { font-weight: 800; font-size: 16px; display: block; line-height: 1.2; }
+        .role { font-size: 10px; text-transform: uppercase; letter-spacing: 1px; font-weight: 700; opacity: 0.6; margin-top: 4px; display: block; }
+        
+        .theme-switcher { position: fixed; top: 15px; right: 15px; display: flex; gap: 4px; background: var(--glass); padding: 4px; border-radius: 12px; border: 1px solid var(--border); backdrop-filter: blur(10px); z-index: 1000; }
+        .theme-switcher button { border: none; padding: 8px 12px; border-radius: 8px; background: transparent; color: var(--btn-text); font-size: 10px; font-weight: 800; cursor: pointer; }
+        .theme-switcher button.active { background: var(--text); color: #000; }
+        body.light-theme .theme-switcher button.active { background: #1a1a2e; color: #fff; }
+
+        @media (max-width: 380px) {
+            h1 { font-size: 24px; }
+            .name { font-size: 15px; }
+        }
     </style>
 </head>
 <body>
+    <div class="theme-switcher">
+        <button onclick="applyTheme('dark')" id="btn-dark">D</button>
+        <button onclick="applyTheme('light')" id="btn-light">L</button>
+        <button onclick="applyTheme('inside')" id="btn-inside">IO</button>
+    </div>
+
     <div class="container">
-        <div class="back"><a href="index.html">← НАЗАД</a></div>
+        <a href="index.html" class="back-link">← НАЗАД</a>
         <h1>Команда</h1>
         <div class="card">
             <ul>
-                <li><span class="name">Алексей</span><span class="role tech">Техническая поддержка</span></li>
-                <li><span class="name">Иван Иванов</span><span class="role coord">Координатор проекта</span></li>
-                <li><span class="name">Мария Петрова</span><span class="role logis">Логистика</span></li>
+                <li><span class="name">Самошкин Максим Александрович</span><span class="role">Директор</span></li>
+                <li><span class="name">Марданян Ульяна Дмитриевна</span><span class="role">Координатор</span></li>
+                <li><span class="name">Князева Полина Анатольевна</span><span class="role">Бухгалтер, Музыкант</span></li>
+                <li><span class="name">Марданян Роман Ованесович</span><span class="role">Игры</span></li>
+                <li><span class="name">Матвеев Евгений Владимирович</span><span class="role">Игры</span></li>
+                <li><span class="name">Осин Владислав Тарасович</span><span class="role">Игры</span></li>
+                <li><span class="name">Горничар Илья Иванович</span><span class="role">Игры, Музыкант</span></li>
+                <li><span class="name">Хорев Станислав Сергеевич</span><span class="role">Игры, Музыкант</span></li>
+                <li><span class="name">Матвеева Екатерина Юрьевна</span><span class="role">Дизайнер</span></li>
+                <li><span class="name">Жирнов Кирилл Андреевич</span><span class="role">Ведущий</span></li>
+                <li><span class="name">Осин Ростислав Тарасович</span><span class="role">Видеооператор</span></li>
+                <li><span class="name">Зайцев Алексей Давидович</span><span class="role">Компьютерщик</span></li>
+                <li><span class="name">Вендин Артемий Васильевич</span><span class="role">Звукооператор</span></li>
+                <li><span class="name">Пантелеев Алексей Андреевич</span><span class="role">Наставник</span></li>
+                <li><span class="name">Асадулин Родион Эльдарович</span><span class="role">Наставник</span></li>
+                <li><span class="name">Барышев Александр Дмитриевич</span><span class="role">Наставник</span></li>
+                <li><span class="name">Рощупкин Роман Александрович</span><span class="role">Наставник</span></li>
+                <li><span class="name">Горничар Владислав Иванович</span><span class="role">Музыкант</span></li>
+                <li><span class="name">Гарановская Ангелина Владимировна</span><span class="role">Музыкант</span></li>
             </ul>
         </div>
     </div>
+
+    <script>
+        function applyTheme(theme) {
+            document.body.classList.remove('light-theme', 'inside-out-theme', 'dark-theme');
+            document.querySelectorAll('.theme-switcher button').forEach(b => b.classList.remove('active'));
+            if (theme === 'light') document.body.classList.add('light-theme');
+            if (theme === 'inside') document.body.classList.add('inside-out-theme');
+            const btn = document.getElementById('btn-' + theme);
+            if (btn) btn.classList.add('active');
+            localStorage.setItem('selectedTheme', theme);
+        }
+        applyTheme(localStorage.getItem('selectedTheme') || 'dark');
+    </script>
 </body>
 </html>
