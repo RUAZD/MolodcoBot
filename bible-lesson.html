@@ -2,63 +2,38 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <title>Библейский урок дня</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Урок дня</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
     <style>
-        :root {
-            color-scheme: dark;
-        }
         body {
-            margin: 0;
-            padding: 32px;
-            font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-            background: #0d1117;
-            color: #c9d1d9;
-            max-width: 800px;
+            margin: 0; padding: 30px 20px;
+            font-family: 'Inter', sans-serif;
+            background: #05070a; color: #fff;
+            display: flex; flex-direction: column; align-items: center;
         }
-        a {
-            color: #58a6ff;
-            text-decoration: none;
-        }
-        a:hover {
-            text-decoration: underline;
-        }
-        h1 {
-            font-size: 22px;
-            margin-bottom: 16px;
-        }
-        .back {
-            margin-bottom: 16px;
-            font-size: 13px;
-        }
+        .back { align-self: flex-start; margin-bottom: 20px; }
+        .back a { color: #888; text-decoration: none; font-size: 14px; }
+        .container { max-width: 600px; width: 100%; }
+        h1 { font-weight: 900; background: linear-gradient(90deg, #ffde59, #ff914d); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
         .card {
-            background: #161b22;
-            border-radius: 8px;
-            border: 1px solid #30363d;
-            padding: 20px;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 30px; border-radius: 24px;
+            line-height: 1.8; backdrop-filter: blur(15px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.4);
         }
-        .ref {
-            font-size: 13px;
-            color: #8b949e;
-            margin-bottom: 8px;
-        }
-        p {
-            line-height: 1.6;
-        }
+        .ref { color: #ffde59; font-weight: 700; margin-bottom: 10px; display: block; font-size: 12px; text-transform: uppercase; }
     </style>
 </head>
 <body>
-    <div class="back">
-        <a href="index.html">← Назад к хабу</a>
-    </div>
-
-    <h1>Библейский урок дня</h1>
-
-    <div class="card">
-        <div class="ref">Текст урока:</div>
-        <p>
-            Здесь можно размещать текст урока дня.  
-            Ты можешь обновлять его вручную в репозитории или автоматизировать обновление через скрипты и GitHub Actions.
-        </p>
+    <div class="container">
+        <div class="back"><a href="index.html">← НАЗАД</a></div>
+        <h1>Урок дня</h1>
+        <div class="card">
+            <span class="ref">МЫСЛЬ НА СЕГОДНЯ:</span>
+            <p>Здесь будет ваш текст. Используйте этот блок для вдохновения. Вы можете обновлять его через GitHub, и дизайн автоматически подстроится под объем текста.</p>
+        </div>
     </div>
 </body>
 </html>
