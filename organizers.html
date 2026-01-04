@@ -2,23 +2,76 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <title>Организаторы</title>
+    <title>Список организаторов</title>
     <style>
-        body { font-family: Arial; padding: 40px; max-width: 700px; margin: auto; }
-        ul { line-height: 1.8; }
-        a { color: #0077cc; }
+        :root {
+            color-scheme: dark;
+        }
+        body {
+            margin: 0;
+            padding: 32px;
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+            background: #0d1117;
+            color: #c9d1d9;
+            max-width: 800px;
+        }
+        a {
+            color: #58a6ff;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+        h1 {
+            font-size: 22px;
+            margin-bottom: 16px;
+        }
+        .back {
+            margin-bottom: 16px;
+            font-size: 13px;
+        }
+        ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        li + li {
+            margin-top: 8px;
+        }
+        .role {
+            color: #8b949e;
+            font-size: 13px;
+        }
+        .card {
+            background: #161b22;
+            border-radius: 8px;
+            border: 1px solid #30363d;
+            padding: 20px;
+        }
     </style>
 </head>
 <body>
+    <div class="back">
+        <a href="index.html">← Назад к хабу</a>
+    </div>
+
     <h1>Список организаторов</h1>
 
-    <ul>
-        <li>Иван Иванов — координатор</li>
-        <li>Мария Петрова — логистика</li>
-        <li>Алексей Смирнов — техническая поддержка</li>
-        <li>…</li>
-    </ul>
-
-    <p><a href="index.html">← Назад</a></p>
+    <div class="card">
+        <ul>
+            <li>
+                Алексей — <span class="role">техническая поддержка</span>
+            </li>
+            <li>
+                Иван Иванов — <span class="role">координатор</span>
+            </li>
+            <li>
+                Мария Петрова — <span class="role">логистика</span>
+            </li>
+            <li>
+                …другие организаторы
+            </li>
+        </ul>
+    </div>
 </body>
 </html>
