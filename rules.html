@@ -3,31 +3,86 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Правила</title>
+    <title>Правила — Molodco</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
     <style>
-        body { margin: 0; padding: 30px 20px; font-family: 'Inter', sans-serif; background: #05070a; color: #fff; display: flex; flex-direction: column; align-items: center; }
+        :root { --bg: linear-gradient(135deg, #0f0c29, #302b63, #24243e); --text: #fff; --glass: rgba(255,255,255,0.05); --border: rgba(255,255,255,0.1); --btn-text: #fff; }
+        body.light-theme { --bg: linear-gradient(135deg, #e0c3fc, #8ec5fc); --text: #1a1a2e; --glass: rgba(255,255,255,0.3); --border: rgba(0,0,0,0.1); --btn-text: #1a1a2e; }
+        body.inside-out-theme { --bg: fixed, radial-gradient(circle at 15% 15%, #ffde59 0%, transparent 35%), radial-gradient(circle at 85% 15%, #ff4d4d 0%, transparent 35%), radial-gradient(circle at 50% 50%, #7ed957 0%, transparent 40%), radial-gradient(circle at 15% 85%, #5271ff 0%, transparent 35%), radial-gradient(circle at 85% 85%, #a29bfe 0%, transparent 35%), linear-gradient(135deg, #1e0b36, #0a0a1a); --text: #fff; --glass: rgba(255,255,255,0.15); --border: rgba(255,255,255,0.3); --btn-text: #fff; }
+        
+        body { margin: 0; padding: 80px 20px; font-family: 'Inter', sans-serif; background: var(--bg); background-attachment: fixed; color: var(--text); display: flex; flex-direction: column; align-items: center; min-height: 100vh; transition: 0.4s; }
         .container { max-width: 500px; width: 100%; }
-        .back a { color: #888; text-decoration: none; font-size: 14px; display: block; margin-bottom: 20px; }
-        h1 { font-weight: 900; }
-        .card { background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.1); padding: 25px; border-radius: 24px; }
-        ol { padding-left: 20px; }
-        li { margin-bottom: 15px; color: #ccc; line-height: 1.5; }
-        li::marker { color: #ff4d4d; font-weight: 800; }
+        .back-link { color: var(--text); text-decoration: none; font-weight: 800; font-size: 14px; margin-bottom: 20px; display: inline-block; opacity: 0.7; }
+        
+        h1 { font-weight: 900; text-transform: uppercase; margin-bottom: 25px; text-align: center; font-size: 32px; letter-spacing: -1px; }
+        
+        .card { background: var(--glass); border: 1px solid var(--border); padding: 25px; border-radius: 28px; backdrop-filter: blur(15px); box-shadow: 0 10px 30px rgba(0,0,0,0.2); }
+        
+        .rule-item { display: flex; gap: 15px; margin-bottom: 20px; align-items: flex-start; }
+        .rule-num { background: var(--text); color: #000; min-width: 24px; height: 24px; display: flex; align-items: center; justify-content: center; border-radius: 8px; font-weight: 900; font-size: 12px; }
+        body.light-theme .rule-num { background: #1a1a2e; color: #fff; }
+        .rule-text { font-size: 15px; font-weight: 600; line-height: 1.4; }
+        .recommend { color: #ffde59; font-style: italic; }
+        body.inside-out-theme .recommend { color: #00f2fe; }
+
+        .theme-switcher-wrapper { position: fixed; top: 15px; right: 15px; text-align: right; z-index: 1000; }
+        .theme-switcher { display: flex; gap: 4px; background: var(--glass); padding: 4px; border-radius: 12px; border: 1px solid var(--border); backdrop-filter: blur(10px); }
+        .theme-switcher button { border: none; padding: 8px 12px; border-radius: 8px; background: transparent; color: var(--btn-text); font-size: 10px; font-weight: 800; }
+        .theme-switcher button.active { background: var(--text); color: #000; }
+        body.light-theme .theme-switcher button.active { background: #1a1a2e; color: #fff; }
     </style>
 </head>
 <body>
-    <div class="container">
-        <div class="back"><a href="index.html">← НАЗАД</a></div>
-        <h1>Правила</h1>
-        <div class="card">
-            <ol>
-                <li>Уважать друг друга и команду.</li>
-                <li>Соблюдать тайминг мероприятий.</li>
-                <li>Беречь оборудование и пространство.</li>
-                <li>Быть открытым к новым знаниям.</li>
-            </ol>
+    <div class="theme-switcher-wrapper">
+        <div class="theme-switcher">
+            <button onclick="applyTheme('dark')" id="btn-dark">D</button>
+            <button onclick="applyTheme('light')" id="btn-light">L</button>
+            <button onclick="applyTheme('inside')" id="btn-inside">Г</button>
         </div>
     </div>
+
+    <div class="container">
+        <a href="index.html" class="back-link">← НАЗАД</a>
+        <h1>Правила</h1>
+        <div class="card">
+            <div class="rule-item">
+                <div class="rule-num">1</div>
+                <div class="rule-text">После отбоя — никаких прогулок и разговоров между парнями и девушками.</div>
+            </div>
+            <div class="rule-item">
+                <div class="rule-num">2</div>
+                <div class="rule-text">В туалет ничего не бросать (ни бумагу, ни средства гигиены) — иначе засорится канализация.</div>
+            </div>
+            <div class="rule-item">
+                <div class="rule-num">3</div>
+                <div class="rule-text">Не использовать ненормативную лексику и не допускать унижения.</div>
+            </div>
+            <div class="rule-item">
+                <div class="rule-num">4</div>
+                <div class="rule-text">Запрещены алкоголь, табак и электронные сигареты.</div>
+            </div>
+            <div class="rule-item">
+                <div class="rule-num">5</div>
+                <div class="rule-text">Соблюдать распорядок слёта и не покидать территорию церкви.</div>
+            </div>
+            <div class="rule-item">
+                <div class="rule-num">6</div>
+                <div class="rule-text recommend">Получать удовольствие от всего происходящего — настоятельно рекомендуем!</div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function applyTheme(theme) {
+            document.body.classList.remove('light-theme', 'inside-out-theme', 'dark-theme');
+            document.querySelectorAll('.theme-switcher button').forEach(b => b.classList.remove('active'));
+            if (theme === 'light') document.body.classList.add('light-theme');
+            if (theme === 'inside') document.body.classList.add('inside-out-theme');
+            const btn = document.getElementById('btn-' + (theme === 'inside' ? 'inside' : theme));
+            if (btn) btn.classList.add('active');
+            localStorage.setItem('selectedTheme', theme);
+        }
+        applyTheme(localStorage.getItem('selectedTheme') || 'dark');
+    </script>
 </body>
 </html>
