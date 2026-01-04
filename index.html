@@ -8,7 +8,7 @@
     <style>
         :root {
             --bg: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
-            --accent: #ffde59;
+            --accent: #58a6ff; /* Изменено с золотого на синий акцент для темной темы */
             --glass: rgba(255, 255, 255, 0.05);
             --border: rgba(255, 255, 255, 0.1);
             --text: #ffffff;
@@ -29,7 +29,8 @@
                   radial-gradient(circle at 15% 85%, #5271ff 0%, transparent 35%),
                   radial-gradient(circle at 85% 85%, #a29bfe 0%, transparent 35%),
                   linear-gradient(135deg, #1e0b36 0%, #0a0a1a 100%);
-            --accent: #00f2fe; --glass: rgba(255, 255, 255, 0.15);
+            --accent: #00f2fe; /* Неоновый для Головоломки */
+            --glass: rgba(255, 255, 255, 0.15);
             --border: rgba(255, 255, 255, 0.3); --text: #ffffff; --btn-text: #ffffff;
         }
         body {
@@ -62,7 +63,13 @@
             border-radius: 20px; color: var(--text); text-decoration: none; font-weight: 800;
             backdrop-filter: blur(15px); text-align: center; transition: 0.3s; font-size: 15px;
         }
-        a.nav-btn:hover { transform: translateY(-3px); border-color: var(--accent); }
+        
+        /* Измененная обводка при наведении */
+        a.nav-btn:hover { 
+            transform: translateY(-3px); 
+            border-color: var(--accent); 
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
 
         /* Ссылки на ТГ */
         .tg-section { display: flex; flex-direction: column; gap: 10px; }
@@ -71,7 +78,7 @@
             background: rgba(0, 136, 204, 0.1); border: 1px solid rgba(0, 136, 204, 0.3);
             border-radius: 18px; color: var(--text); text-decoration: none; transition: 0.3s;
         }
-        .tg-card:hover { background: rgba(0, 136, 204, 0.2); transform: scale(1.02); }
+        .tg-card:hover { background: rgba(0, 136, 204, 0.2); transform: scale(1.02); border-color: #58a6ff; }
         .tg-icon { font-size: 24px; }
         .tg-info span { display: block; font-size: 10px; opacity: 0.6; text-transform: uppercase; font-weight: 700; }
         .tg-info strong { font-size: 14px; font-weight: 800; }
@@ -124,9 +131,20 @@
             document.body.classList.remove('light-theme', 'inside-out-theme', 'dark-theme');
             document.querySelectorAll('.theme-switcher button').forEach(b => b.classList.remove('active'));
             const link = document.getElementById('schedule-link');
-            if (theme === 'light') { document.body.classList.add('light-theme'); link.href = 'schedule-light.html'; }
-            else if (theme === 'inside') { document.body.classList.add('inside-out-theme'); link.href = 'schedule-light.html'; }
-            else { link.href = 'schedule-dark.html'; }
+            
+            if (theme === 'light') { 
+                document.body.classList.add('light-theme'); 
+                link.href = 'schedule-light.html'; 
+            }
+            else if (theme === 'inside') { 
+                document.body.classList.add('inside-out-theme'); 
+                link.href = 'schedule-light.html'; 
+            }
+            else { 
+                document.body.classList.add('dark-theme');
+                link.href = 'schedule-dark.html'; 
+            }
+            
             document.getElementById('btn-' + theme).classList.add('active');
             localStorage.setItem('selectedTheme', theme);
         }
