@@ -3,26 +3,109 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Schedule Dark</title>
+    <title>Schedule Dark — Molodco</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
     <style>
-        body { margin: 0; padding: 20px; font-family: 'Inter', sans-serif; background: #05070a; color: #fff; }
-        header { display: flex; align-items: center; gap: 15px; margin-bottom: 30px; }
-        .back-btn { text-decoration: none; color: #fff; background: rgba(255,255,255,0.1); padding: 8px 16px; border-radius: 12px; font-size: 14px; }
-        h1 { font-size: 20px; font-weight: 900; margin: 0; }
-        .images { display: flex; flex-direction: column; gap: 20px; max-width: 600px; margin: 0 auto; }
-        img { width: 100%; border-radius: 20px; border: 1px solid rgba(255,255,255,0.1); box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
+        :root {
+            --bg: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
+            --accent: #ffde59;
+            --glass: rgba(255, 255, 255, 0.05);
+            --border: rgba(255, 255, 255, 0.1);
+            --text: #ffffff;
+            --btn-text: #ffffff;
+        }
+        body.light-theme {
+            --bg: linear-gradient(135deg, #e0c3fc 0%, #8ec5fc 100%);
+            --accent: #5271ff;
+            --glass: rgba(255, 255, 255, 0.3);
+            --border: rgba(0, 0, 0, 0.1);
+            --text: #1a1a2e;
+            --btn-text: #1a1a2e;
+        }
+        body.inside-out-theme {
+            --bg: fixed, radial-gradient(circle at 15% 15%, #ffde59 0%, transparent 35%),
+                  radial-gradient(circle at 85% 15%, #ff4d4d 0%, transparent 35%),
+                  radial-gradient(circle at 50% 50%, #7ed957 0%, transparent 40%),
+                  radial-gradient(circle at 15% 85%, #5271ff 0%, transparent 35%),
+                  radial-gradient(circle at 85% 85%, #a29bfe 0%, transparent 35%),
+                  linear-gradient(135deg, #1e0b36 0%, #0a0a1a 100%);
+            --accent: #00f2fe; --glass: rgba(255, 255, 255, 0.15);
+            --border: rgba(255, 255, 255, 0.3); --text: #ffffff; --btn-text: #ffffff;
+        }
+        body { 
+            margin: 0; padding: 80px 20px 40px; font-family: 'Inter', sans-serif; 
+            background: var(--bg); background-attachment: fixed; color: var(--text); 
+            display: flex; flex-direction: column; align-items: center; min-height: 100vh; transition: 0.4s; 
+        }
+        .container { width: 100%; max-width: 600px; }
+        
+        /* Кнопка назад в стиле Хаба */
+        header { display: flex; align-items: center; gap: 15px; margin-bottom: 30px; width: 100%; }
+        .back-btn { 
+            text-decoration: none; color: var(--text); background: var(--glass); 
+            padding: 12px 20px; border-radius: 15px; border: 1px solid var(--border);
+            font-weight: 800; backdrop-filter: blur(10px); transition: 0.3s;
+        }
+        .back-btn:hover { transform: translateX(-5px); border-color: var(--accent); }
+        h1 { font-size: 24px; font-weight: 900; margin: 0; text-transform: uppercase; letter-spacing: -1px; }
+
+        /* Изображения */
+        .images { display: flex; flex-direction: column; gap: 25px; width: 100%; }
+        .img-card {
+            background: var(--glass); padding: 10px; border-radius: 25px;
+            border: 1px solid var(--border); backdrop-filter: blur(15px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.3);
+        }
+        img { width: 100%; border-radius: 20px; display: block; }
+
+        /* Переключатель тем (мини) */
+        .theme-switcher-wrapper { position: fixed; top: 15px; right: 15px; z-index: 1000; }
+        .theme-switcher {
+            display: inline-flex; gap: 4px; background: var(--glass); padding: 4px; 
+            border-radius: 12px; border: 1px solid var(--border); backdrop-filter: blur(10px);
+        }
+        .theme-switcher button {
+            border: none; padding: 8px 12px; border-radius: 8px; background: transparent;
+            color: var(--btn-text); cursor: pointer; font-size: 10px; font-weight: 800;
+        }
+        .theme-switcher button.active { background: var(--text); color: #000; }
+        body.light-theme .theme-switcher button.active { background: #1a1a2e; color: #fff; }
     </style>
 </head>
 <body>
-    <header>
-        <a class="back-btn" href="index.html">←</a>
-        <h1>РАСПИСАНИЕ (DARK)</h1>
-    </header>
-    <div class="images">
-        <img src="images/Day_4_Dark_v1.jpg" alt="Day 4">
-        <img src="images/Day_5_Dark_v1.jpg" alt="Day 5">
-        <img src="images/Day_6_Dark_v1.jpg" alt="Day 6">
+    <div class="theme-switcher-wrapper">
+        <div class="theme-switcher">
+            <button onclick="updateTheme('dark')" id="btn-dark">D</button>
+            <button onclick="updateTheme('light')" id="btn-light">L</button>
+            <button onclick="updateTheme('inside')" id="btn-inside">Г</button>
+        </div>
     </div>
+
+    <div class="container">
+        <header>
+            <a class="back-btn" href="index.html">←</a>
+            <h1>РАСПИСАНИЕ (DARK)</h1>
+        </header>
+
+        <div class="images">
+            <div class="img-card"><img src="images/Day_1_Dark.jpg" alt="День 1"></div>
+            <div class="img-card"><img src="images/Day_2_Dark.jpg" alt="День 2"></div>
+            <div class="img-card"><img src="images/Day_3_Dark.jpg" alt="День 3"></div>
+            <div class="img-card"><img src="images/Day_4_Dark.jpg" alt="День 4"></div>
+            <div class="img-card"><img src="images/Day_5_Dark.jpg" alt="День 5"></div>
+        </div>
+    </div>
+
+    <script>
+        function updateTheme(theme) {
+            document.body.classList.remove('light-theme', 'inside-out-theme', 'dark-theme');
+            document.querySelectorAll('.theme-switcher button').forEach(b => b.classList.remove('active'));
+            if (theme === 'light') { document.body.classList.add('light-theme'); }
+            else if (theme === 'inside') { document.body.classList.add('inside-out-theme'); }
+            document.getElementById('btn-' + theme).classList.add('active');
+            localStorage.setItem('selectedTheme', theme);
+        }
+        updateTheme(localStorage.getItem('selectedTheme') || 'dark');
+    </script>
 </body>
 </html>
