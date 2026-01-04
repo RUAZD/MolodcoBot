@@ -2,61 +2,80 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <title>Хаб ссылок</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Hub — Molodco</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
     <style>
         :root {
-            color-scheme: dark;
+            --bg: #05070a;
+            --accent: #ffde59;
+            --glass: rgba(255, 255, 255, 0.05);
+            --border: rgba(255, 255, 255, 0.1);
         }
         body {
             margin: 0;
-            padding: 32px;
-            font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-            background: #0d1117;
-            color: #c9d1d9;
+            padding: 40px 20px;
+            font-family: 'Inter', sans-serif;
+            background: radial-gradient(circle at 50% 0%, #1a1a2e 0%, #05070a 100%);
+            color: #fff;
+            display: flex;
+            justify-content: center;
+            min-height: 100vh;
         }
+        .container { width: 100%; max-width: 440px; }
         h1 {
-            margin-bottom: 24px;
-            font-size: 24px;
+            font-weight: 900;
+            font-size: 32px;
+            text-align: center;
+            margin-bottom: 40px;
+            background: linear-gradient(180deg, #fff 0%, #666 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            letter-spacing: -1px;
         }
-        ul {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-        }
-        li + li {
-            margin-top: 12px;
-        }
+        ul { list-style: none; padding: 0; }
+        li { margin-bottom: 16px; }
         a {
-            color: #58a6ff;
+            display: block;
+            padding: 20px;
+            background: var(--glass);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            color: #fff;
             text-decoration: none;
-            padding: 10px 14px;
-            border-radius: 6px;
-            display: inline-block;
-            background: #161b22;
-            border: 1px solid #30363d;
+            font-weight: 700;
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
         }
         a:hover {
-            background: #21262d;
-            border-color: #58a6ff;
+            transform: translateY(-3px);
+            background: rgba(255, 255, 255, 0.1);
+            border-color: var(--accent);
+            box-shadow: 0 0 20px rgba(255, 222, 89, 0.2);
         }
         .note {
-            margin-top: 24px;
-            font-size: 13px;
-            color: #8b949e;
+            text-align: center;
+            margin-top: 40px;
+            font-size: 12px;
+            color: #555;
+            text-transform: uppercase;
+            letter-spacing: 2px;
         }
     </style>
 </head>
 <body>
-    <h1>Хаб ссылок</h1>
-
-    <ul>
-        <li><a href="schedule-light.html">Расписание дня (светлая версия картинок)</a></li>
-        <li><a href="schedule-dark.html">Расписание дня (тёмная версия картинок)</a></li>
-        <li><a href="bible-lesson.html">Библейский урок дня</a></li>
-        <li><a href="organizers.html">Список организаторов</a></li>
-        <li><a href="rules.html">Правила</a></li>
-    </ul>
-
-    <p class="note">Сайт на GitHub Pages · MolodcoBot</p>
+    <div class="container">
+        <h1>ХАБ ССЫЛОК</h1>
+        <ul>
+            <li><a href="schedule-light.html">📅 Расписание (Light)</a></li>
+            <li><a href="schedule-dark.html">🌙 Расписание (Dark)</a></li>
+            <li><a href="bible-lesson.html">📖 Урок дня</a></li>
+            <li><a href="organizers.html">👥 Организаторы</a></li>
+            <li><a href="rules.html">📜 Правила</a></li>
+        </ul>
+        <p class="note">MolodcoBot &copy; 2026</p>
+    </div>
 </body>
 </html>
